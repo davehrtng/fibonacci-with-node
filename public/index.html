@@ -1,0 +1,63 @@
+<html>
+
+<head>
+  <title>Fibonacci</title>
+  <!-- bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    crossorigin="anonymous">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<div class="container-fluid">
+
+<h1>Fibonacci</h1>
+<h1><small>Compute some fibonacci numbers.</small></h1>
+
+<form id="form-fib" class="form-inline">
+  <input type="number" id="input-sequence-number" class="form-control">
+  <button class="btn btn-primary">Ok</button>
+</form>
+
+<div id="div-output">
+  <p id="p-output"></p>
+</div>
+
+</div>
+</body>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+
+<!-- bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+  integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+  crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#form-fib').submit(function () {
+        var inputSequenceNumber = $('#input-sequence-number');
+        var sequenceNumber = inputSequenceNumber.val();
+        if(sequenceNumber != '') {
+          var fibServiceUrl = "http://localhost:3000/fib/" + sequenceNumber;
+
+          $.get(fibServiceUrl, function(dataJsonString, status, jqXHR){
+            var data = JSON.parse(dataJsonString);
+
+            $('#p-output').text(data.fibNumber);
+            // inputSequenceNumber.val('');
+          });
+        }
+        return false;
+      });
+    });
+  </script>
+
+</html>
