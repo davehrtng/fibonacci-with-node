@@ -1,5 +1,6 @@
 // import dependencies
 var express = require('express'),
+    favicon = require('serve-favicon'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     fib = require('./fib'),
@@ -9,6 +10,9 @@ var express = require('express'),
 var app = express(),
     port = process.env.PORT || 3000,
     publicDirectory = require('path').join(__dirname, '/public');
+
+// middleware that serves up the favicon. before logging because it's really just noise
+app.use(favicon(publicDirectory + '/favicon.ico'));
 
 // logging middleware
 app.use(morgan('dev'));
