@@ -46,7 +46,7 @@
         var inputSequenceNumber = $('#input-sequence-number');
         var sequenceNumber = inputSequenceNumber.val();
         if(sequenceNumber != '') {
-          var fibServiceUrl = "http://localhost:3000/fib/" + sequenceNumber;
+          var fibServiceUrl = "fib/" + sequenceNumber;
 
           $.get(fibServiceUrl, function(dataJsonString, status, jqXHR){
             var data = JSON.parse(dataJsonString);
