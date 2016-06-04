@@ -24,7 +24,7 @@
 </form>
 
 <div id="div-output">
-  <p id="p-output"></p>
+  <h1 id="h1-output"></h1>
 </div>
 
 </div>
@@ -51,7 +51,7 @@
           $.get(fibServiceUrl, function(dataJsonString, status, jqXHR){
             var data = JSON.parse(dataJsonString);
 
-            $('#p-output').text(data.fibNumber);
+            $('#h1-output').text(data.fibNumber);
             inputSequenceNumber.select();
           });
         }
