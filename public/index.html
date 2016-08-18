@@ -10,10 +10,21 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+
+  <!-- bootstrap -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+    integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
+
   <!-- React -->
   <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
   <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
   <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+  <script src="js/react-fib.js" type="text/babel"></script>
 </head>
 
 <body>
@@ -37,35 +48,4 @@
 <div id="react-node">
 </div>
 </body>
-
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"
-  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script>
-
-<!-- bootstrap -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-  integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-  crossorigin="anonymous"></script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('#form-fib').submit(function () {
-        var inputSequenceNumber = $('#input-sequence-number');
-        var sequenceNumber = inputSequenceNumber.val();
-        if(sequenceNumber != '') {
-          var fibServiceUrl = "fib/" + sequenceNumber;
-
-          $.get(fibServiceUrl, function(dataJsonString, status, jqXHR){
-            var data = JSON.parse(dataJsonString);
-
-            $('#h1-output').text(data.fibNumber);
-            inputSequenceNumber.select();
-          });
-        }
-        return false;
-      });
-    });
-  </script>
-
 </html>
