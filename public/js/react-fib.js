@@ -60,7 +60,12 @@ var Plot = React.createClass({
       .map(function(coordinate) {
         return <Coordinate x={coordinate.x} y={coordinate.y} key={coordinate.x} />
     });
-    return <div> {coordinateNodes} </div>
+    return ( 
+      <div> 
+        <h4>History</h4>
+        {coordinateNodes}
+      </div>
+    );
   }
 });
 
