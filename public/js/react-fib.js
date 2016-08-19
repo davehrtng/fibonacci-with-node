@@ -1,6 +1,13 @@
-var Fibonacci = React.createClass({
+var App = React.createClass({
   getInitialState: function() {
-    return {sequence: 1, value: 0};
+    return {
+      /** The current sequence number */
+      sequence: 1, 
+      /** The current Fibonacci number */
+      value: 0,
+      /** The history of sequence and Fibonaccie numbers */
+      history: [{x: 1, y: 0}]
+    };
   },
 
   handleSequenceChange: function(e) {
@@ -11,7 +18,11 @@ var Fibonacci = React.createClass({
     e.preventDefault();
     $.get(this.props.url + "/" + this.state.sequence, function(dataJsonString, status, jqXHR){
       var data = JSON.parse(dataJsonString);
-      this.setState({value: data.fibNumber})
+      var newHistory = this.state.history.concat({x: data.sequenceNumber, y: data.fibNumber});
+      this.setState({
+          value: data.fibNumber,
+          history: newHistory
+        });
     }.bind(this));
   },
 
@@ -27,12 +38,33 @@ var Fibonacci = React.createClass({
           <input type="submit" className="btn btn-primary" value="Ok" />
         </form>
         <h1>{this.state.value}</h1>
+        <Plot coordinates={this.state.history} />
       </div>
     );
   }
 });
 
+var Coordinate = React.createClass({
+  render: function() {
+    return <p>({this.props.x}, {this.props.y})</p>;
+  }
+});
+
+var Plot = React.createClass({
+  /**
+   * Simply render all the coordinates contained in the state as <Coordinates />
+   */
+  render: function() {
+    var coordinateNodes = this.props.coordinates
+      .sort( (c1, c2) => c1.x - c2.x )
+      .map(function(coordinate) {
+        return <Coordinate x={coordinate.x} y={coordinate.y} key={coordinate.x} />
+    });
+    return <div> {coordinateNodes} </div>
+  }
+});
+
 ReactDOM.render(
-  <Fibonacci url="fib" />,
+  <App url="fib" />,
   document.getElementById('react-node')
 );
