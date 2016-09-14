@@ -53,9 +53,10 @@ const Plot = (props) => {
   return ( 
     <div> 
       <h4>History</h4>
-      {props.coordinates
-        .sort( (c1, c2) => c1.x - c2.x )
-        .map(coordinate => <Coordinate x={coordinate.x} y={coordinate.y} key={coordinate.x} />)
+      {
+        props.coordinates
+          .sort( (c1, c2) => c1.x - c2.x )
+          .map(coordinate => <Coordinate x={coordinate.x} y={coordinate.y} key={coordinate.x} />)
       }
     </div>
   );
