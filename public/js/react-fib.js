@@ -1,6 +1,7 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const Coordinate = require('./coordinate')
+
+const Plot = require('./plot');
 
 var App = React.createClass({
   getInitialState: function() {
@@ -47,22 +48,6 @@ var App = React.createClass({
     );
   }
 });
-
-/**
- * Simply render all the coordinates contained in the state as <Coordinates />
- */
-const Plot = (props) => {
-  return ( 
-    <div> 
-      <h4>History</h4>
-      {
-        props.coordinates
-          .sort( (c1, c2) => c1.x - c2.x )
-          .map(coordinate => <Coordinate x={coordinate.x} y={coordinate.y} key={coordinate.x} />)
-      }
-    </div>
-  );
-};
 
 ReactDOM.render(
   <App url="fib" />,

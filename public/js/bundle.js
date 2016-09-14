@@ -20782,8 +20782,37 @@ module.exports = Coordinate;
 'use strict';
 
 var React = require('react');
-var ReactDOM = require('react-dom');
 var Coordinate = require('./coordinate');
+
+/**
+ * Simply render all the coordinates contained in the state as <Coordinates />
+ */
+var Plot = function Plot(props) {
+  return React.createElement(
+    'div',
+    null,
+    React.createElement(
+      'h4',
+      null,
+      'History'
+    ),
+    props.coordinates.sort(function (c1, c2) {
+      return c1.x - c2.x;
+    }).map(function (coordinate) {
+      return React.createElement(Coordinate, { x: coordinate.x, y: coordinate.y, key: coordinate.x });
+    })
+  );
+};
+
+module.exports = Plot;
+
+},{"./coordinate":172,"react":171}],174:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var Plot = require('./plot');
 
 var App = React.createClass({
   displayName: 'App',
@@ -20851,26 +20880,6 @@ var App = React.createClass({
   }
 });
 
-/**
- * Simply render all the coordinates contained in the state as <Coordinates />
- */
-var Plot = function Plot(props) {
-  return React.createElement(
-    'div',
-    null,
-    React.createElement(
-      'h4',
-      null,
-      'History'
-    ),
-    props.coordinates.sort(function (c1, c2) {
-      return c1.x - c2.x;
-    }).map(function (coordinate) {
-      return React.createElement(Coordinate, { x: coordinate.x, y: coordinate.y, key: coordinate.x });
-    })
-  );
-};
-
 ReactDOM.render(React.createElement(App, { url: 'fib' }), document.getElementById('react-node'));
 
-},{"./coordinate":172,"react":171,"react-dom":2}]},{},[173]);
+},{"./plot":173,"react":171,"react-dom":2}]},{},[174]);
