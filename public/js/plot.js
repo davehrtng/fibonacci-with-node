@@ -17,4 +17,8 @@ const Plot = (props) => {
   );
 };
 
+Plot.propTypes = {
+  coordinates: React.PropTypes.arrayOf(React.PropTypes.object)
+};
+
 module.exports = Plot;

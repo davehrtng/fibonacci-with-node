@@ -5,7 +5,6 @@ const Coordinate = (props) => <p>({props.x}, {props.y})</p>;
 Coordinate.propTypes = {
     x: React.PropTypes.number,
     y: React.PropTypes.number
-}
-
+};
 
 module.exports = Coordinate;
