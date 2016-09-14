@@ -1,7 +1,6 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-
-const App = require('./app');
+const React = require('react'),
+    ReactDOM = require('react-dom'),
+    App = require('./app');
 
 ReactDOM.render(
   <App url="fib" />,

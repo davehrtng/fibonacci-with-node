@@ -1,5 +1,5 @@
-const React = require('react');
-const Plot = require('./plot');
+const React = require('react'),
+    Plot = require('./plot');
 
 var App = React.createClass({
   getInitialState: function() {

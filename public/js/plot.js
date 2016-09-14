@@ -1,5 +1,5 @@
-const React = require('react');
-const Coordinate  = require('./coordinate');
+const React = require('react'),
+  Coordinate  = require('./coordinate');
 
 /**
  * Simply render all the coordinates contained in the state as <Coordinates />
