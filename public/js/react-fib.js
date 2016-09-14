@@ -44,30 +44,22 @@ var App = React.createClass({
   }
 });
 
-var Coordinate = React.createClass({
-  render: function() {
-    return <p>({this.props.x}, {this.props.y})</p>;
-  }
-});
+const Coordinate = (props) => <p>({props.x}, {props.y})</p>;
 
-var Plot = React.createClass({
-  /**
-   * Simply render all the coordinates contained in the state as <Coordinates />
-   */
-  render: function() {
-    var coordinateNodes = this.props.coordinates
-      .sort( (c1, c2) => c1.x - c2.x )
-      .map(function(coordinate) {
-        return <Coordinate x={coordinate.x} y={coordinate.y} key={coordinate.x} />
-    });
-    return ( 
-      <div> 
-        <h4>History</h4>
-        {coordinateNodes}
-      </div>
-    );
-  }
-});
+/**
+ * Simply render all the coordinates contained in the state as <Coordinates />
+ */
+const Plot = (props) => {
+  return ( 
+    <div> 
+      <h4>History</h4>
+      {props.coordinates
+        .sort( (c1, c2) => c1.x - c2.x )
+        .map(coordinate => <Coordinate x={coordinate.x} y={coordinate.y} key={coordinate.x} />)
+      }
+    </div>
+  );
+};
 
 ReactDOM.render(
   <App url="fib" />,
