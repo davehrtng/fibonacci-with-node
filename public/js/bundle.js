@@ -20762,18 +20762,23 @@ module.exports = require('./lib/React');
 },{"./lib/React":28}],172:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
+var React = require('react'); // Used when jsx transpiled to use React.createEl
 
 var Coordinate = function Coordinate(props) {
-  return React.createElement(
-    'p',
-    null,
-    '(',
-    props.x,
-    ', ',
-    props.y,
-    ')'
-  );
+    return React.createElement(
+        'p',
+        null,
+        '(',
+        props.x,
+        ', ',
+        props.y,
+        ')'
+    );
+};
+
+Coordinate.propTypes = {
+    x: React.PropTypes.number,
+    y: React.PropTypes.number
 };
 
 module.exports = Coordinate;
