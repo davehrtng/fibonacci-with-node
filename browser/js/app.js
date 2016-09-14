@@ -44,6 +44,10 @@ var App = React.createClass({
         <Plot coordinates={this.state.history} />
       </div>
     );
+  },
+  
+  propTypes: {
+      url: React.PropTypes.string.isRequired
   }
 });
 
