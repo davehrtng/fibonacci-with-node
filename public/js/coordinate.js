@@ -3,8 +3,8 @@ const React = require('react'); // Used when jsx transpiled to use React.createE
 const Coordinate = (props) => <p>({props.x}, {props.y})</p>;
 
 Coordinate.propTypes = {
-    x: React.PropTypes.number,
-    y: React.PropTypes.number
+    x: React.PropTypes.number.isRequired,
+    y: React.PropTypes.number.isRequired
 };
 
 module.exports = Coordinate;
