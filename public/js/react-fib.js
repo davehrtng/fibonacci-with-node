@@ -1,5 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
+const Coordinate = require('./coordinate')
 
 var App = React.createClass({
   getInitialState: function() {
@@ -46,8 +47,6 @@ var App = React.createClass({
     );
   }
 });
-
-const Coordinate = (props) => <p>({props.x}, {props.y})</p>;
 
 /**
  * Simply render all the coordinates contained in the state as <Coordinates />
