@@ -1,6 +1,6 @@
 const React = require('react'),
     ReactDOM = require('react-dom'),
-    App = require('./app');
+    App = require('./components/app');
 
 // When running on Cloud9, there are query params at the end of the URL
 // These query params must be ignored when making Fib service requests
