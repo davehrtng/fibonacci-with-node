@@ -1,5 +1,6 @@
 const React = require('react'),
-    Plot = require('./plot');
+    Plot = require('./plot'),
+    request = require('request');
 
 var App = React.createClass({
   getInitialState: function() {
@@ -19,13 +20,21 @@ var App = React.createClass({
 
   handleSubmit: function(e) {
     e.preventDefault();
-    $.get(this.props.url + "/" + this.state.sequence, function(dataJsonString, status, jqXHR){
-      var data = JSON.parse(dataJsonString);
-      var newHistory = this.state.history.concat({x: data.sequenceNumber, y: data.fibNumber});
-      this.setState({
-          value: data.fibNumber,
-          history: newHistory
-        });
+    request.get(this.props.url + this.state.sequence, function(error, response, body) { 
+      if (!error && response.statusCode == 200) {
+            var data = JSON.parse(body);
+            var newHistory = this.state.history.concat({
+              x: data.sequenceNumber,
+              y: data.fibNumber
+            });
+            this.setState({
+                  value: data.fibNumber,
+                  history: newHistory
+            });
+      }
+      else {
+        alert("Something went wrong on our end. Sorry about that! Please try again later.");
+      }
     }.bind(this));
   },
 
