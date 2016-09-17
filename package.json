@@ -14,6 +14,8 @@
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "morgan": "^1.7.0",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0",
     "request": "^2.74.0",
     "serve-favicon": "^2.3.0"
   },
@@ -31,6 +33,7 @@
     "browserify": "^13.1.0",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
+    "redux-devtools": "^3.3.1",
     "uglify-js": "^2.7.3"
   }
 }
