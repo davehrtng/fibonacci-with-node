@@ -18,6 +18,10 @@ function deepCopy(relation) {
     return JSON.parse(JSON.stringify(relation));    
 }
 
+/**
+ * If the the relation does not contain the pair, return a new copy of the 
+ * relation with the pair added. Otherwise, return the relation unmodified.
+ */
 function addPair(relation, pair) {
     if(relation.find(p => p.sequenceNumber = pair.sequenceNumber)) {
         return relation;
@@ -29,19 +33,30 @@ function addPair(relation, pair) {
     }
 }
 
+const defaultState = {
+  relation: [
+    {
+      sequenceNumber: 0,
+      fibNumber: 1
+    }
+    ]
+};
+
 /**
  * The reducer that makes modifications to state via pure functions
  */
-function update(state, action) {
+function update(state = defaultState, action) {
   switch (action.type) {
       
-  case ADD_FIB: {
-    var newRelation = addPair(state.relation, action.pair);
-    state.relation = newRelation;
-    return state;
-  }
-    
-  default:
-    return state;
-  }
+    case ADD_FIB: {
+      var newRelation = addPair(state.relation, action.pair);
+      state.relation = newRelation;
+      return state;
+    }
+      
+    default:
+      return state;
+    }
 }
+
+let store = createStore(update);
