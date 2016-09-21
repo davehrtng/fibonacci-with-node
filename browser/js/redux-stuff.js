@@ -1,3 +1,7 @@
+const React = require('react'),
+    ReactDOM = require('react-dom'),
+    App = require('./components/app');
+
 /**
  * For now, putting all my redux code in one file for a first-pass naive
  * implementation as I learn. 
@@ -42,6 +46,9 @@ const defaultState = {
     ]
 };
 
+// TODO refactor the state to just be an array. No need to have an object
+// with just one property - an array. This is a short-lived and small project.
+
 /**
  * The reducer that makes modifications to state via pure functions
  */
@@ -60,3 +67,18 @@ function update(state = defaultState, action) {
 }
 
 let store = createStore(update);
+
+const fibServiceUrl = window.location.protocol + "//" + window.location.host + "/fib/";
+function render() {
+  ReactDOM.render(
+    <App url={fibServiceUrl} />,
+    document.getElementById('react-node')
+  );
+}
+
+// Now, any time the state changes, we will render the DOM using React
+store.subscribe(render);
+render(); // Render the initial state of the application
+
+// From here on out, React components simply need to dispatch actions to the 
+// store. Redux will then automatically ask React to render the updates.
