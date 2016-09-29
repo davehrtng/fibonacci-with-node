@@ -26,6 +26,10 @@ var App = React.createClass({
               pair: [data.sequenceNumber, data.fibNumber]
             }
             store.dispatch(addPairAction);
+            store.dispatch({
+              type: 'SET VALUE',
+              value: data.fibNumber
+            });
       }
       else {
         alert("Something went wrong on our end. Sorry about that! Please try again later.");
@@ -44,7 +48,7 @@ var App = React.createClass({
             value={store.getState().sequence} />
           <input type="submit" className="btn btn-primary" value="Ok" />
         </form>
-        <h1>{this.state.value}</h1>
+        <h1>{store.getState().value}</h1>
         <Plot coordinates={store.getState().history} />
       </div>
     );

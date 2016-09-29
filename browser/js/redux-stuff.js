@@ -43,6 +43,11 @@ const setSequence = (state, sequence) => {
   return state;
 }
 
+const setValue = (state, value) => {
+  state.value = value;
+  return state;
+}
+
 
 /**
  * The reducer that makes modifications to state via pure functions
@@ -58,6 +63,10 @@ function update(state = defaultState, action) {
     case 'SET SEQUENCE': {
       state = setSequence(state, action.sequence);
       return state;
+    }
+    
+    case 'SET VALUE': {
+      return setValue(state, action.value);
     }
       
     default:
