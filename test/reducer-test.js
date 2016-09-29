@@ -3,8 +3,9 @@
  */
  
  const assert = require('assert');
+ const store = require('../browser/js/redux-stuff');
  
- describe('Reducers', () => {
+ describe('Action', () => {
     describe('No action', function() {
         it('should return the default state', () => {
             assert.fail();

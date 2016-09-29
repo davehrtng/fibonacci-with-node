@@ -7,7 +7,7 @@ const React = require('react'),
  * implementation as I learn. 
  */
  
-const createStore = require('redux');
+import { createStore } from 'redux';
 
 const defaultState = [
     [0, 1]
@@ -54,17 +54,22 @@ function update(state = defaultState, action) {
 
 let store = createStore(update);
 
-const fibServiceUrl = window.location.protocol + "//" + window.location.host + "/fib/";
-function render() {
-  ReactDOM.render(
-    <App url={fibServiceUrl} />,
-    document.getElementById('react-node')
-  );
-}
+// TODO: probably export store and then move the commented out code below to main.js
+// using the imported store
+
+// const fibServiceUrl = window.location.protocol + "//" + window.location.host + "/fib/";
+// function render() {
+//   ReactDOM.render(
+//     <App url={fibServiceUrl} />,
+//     document.getElementById('react-node')
+//   );
+// }
 
 // Now, any time the state changes, we will render the DOM using React
-store.subscribe(render);
-render(); // Render the initial state of the application
+// store.subscribe(render);
+// render(); // Render the initial state of the application
 
 // From here on out, React components simply need to dispatch actions to the 
 // store. Redux will then automatically ask React to render the updates.
+
+module.exports = store;
