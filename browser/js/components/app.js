@@ -9,12 +9,16 @@ var App = React.createClass({
   },
 
   handleSequenceChange: function(e) {
-    this.setState({sequence: e.target.value})
+    const setSequenceAction = {
+      type: 'SET SEQUENCE',
+      sequence: e.target.value
+    };
+    store.dispatch(setSequenceAction);
   },
 
   handleSubmit: function(e) {
     e.preventDefault();
-    request.get(this.props.url + this.state.sequence, function(error, response, body) { 
+    request.get(this.props.url + store.getState().sequence, function(error, response, body) { 
       if (!error && response.statusCode == 200) {
             const data = JSON.parse(body);
             const addPairAction = {
@@ -37,7 +41,7 @@ var App = React.createClass({
         <form className="form-inline" onSubmit={this.handleSubmit}>
           <input type="number" className="form-control" min="1" max="1250"
             onChange={this.handleSequenceChange}
-            value={this.state.sequence} />
+            value={store.getState().sequence} />
           <input type="submit" className="btn btn-primary" value="Ok" />
         </form>
         <h1>{this.state.value}</h1>

@@ -38,6 +38,11 @@ function addPair(state, pair) {
     }
 }
 
+const setSequence = (state, sequence) => {
+  state.sequence = sequence;
+  return state;
+}
+
 
 /**
  * The reducer that makes modifications to state via pure functions
@@ -47,6 +52,11 @@ function update(state = defaultState, action) {
       
     case 'ADD PAIR': {
       state = addPair(state, action.pair);
+      return state;
+    }
+    
+    case 'SET SEQUENCE': {
+      state = setSequence(state, action.sequence);
       return state;
     }
       
