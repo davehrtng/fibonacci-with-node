@@ -2,7 +2,7 @@ const React = require('react'),
   Coordinate  = require('./coordinate');
 
 /**
- * Simply render all the coordinates contained in the state as <Coordinates />
+ * Render all the pairs contained in the state as <Coordinates />
  */
 const Plot = (props) => {
   return ( 

@@ -5,6 +5,8 @@
  const assert = require('assert');
  const store = require('../browser/js/redux-stuff');
  
+ // These tests are broken after state refactor
+ 
  const INITIAL_STATE = [
      [0,1]
      ];

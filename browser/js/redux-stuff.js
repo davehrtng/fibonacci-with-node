@@ -13,9 +13,11 @@ const React = require('react'),
  
 import { createStore } from 'redux';
 
-const defaultState = [
-    [1, 0]
-  ];
+const defaultState = {
+  sequence: 1,
+  value: 0,
+  history: [ [1, 0] ]
+}
 
 /**
  * If the the relation does not contain the pair, return a new copy of the 
@@ -23,15 +25,16 @@ const defaultState = [
  * 
  */
 function addPair(state, pair) {
-    if(state.find(p => p[0] === pair[0])) {
+    if(state.history.find(p => p[0] === pair[0])) {
         return state;
     }
     else {
-        let newState = [
-          ...state,
+        let newHistory = [
+          ...state.history,
           pair
           ];
-        return newState;
+        state.history = newHistory;
+        return state;
     }
 }
 
