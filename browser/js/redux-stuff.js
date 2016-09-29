@@ -9,6 +9,8 @@ const React = require('react'),
  * Future enhancements:
  * Add constants in an ActionType module
  * Create action factory so that you can just say addPairAction(0, 1) or whatever
+ * Separate reducers into separate modules that only care about their portion of state
+ *    then use combine reducers to marry up all the reducers
  */
  
 import { createStore } from 'redux';
