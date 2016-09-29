@@ -9,42 +9,29 @@ const React = require('react'),
  
 const createStore = require('redux');
 
-// TODO: Curious if Symbols work as action type
-const ADD_FIB = 'ADD FIB NUMBER';
-
-/**
- * Creates a deep copy of an array of Fibonacci computations. 
- * A new array is returned, and each computation is a new object.
- */
-function deepCopy(relation) {
-    // This may seem a little hacky, but it's a nice one-liner,
-    // and only breaks if my data is no longer JSON compliant.
-    return JSON.parse(JSON.stringify(relation));    
-}
+const defaultState = [
+    [0, 1]
+  ];
 
 /**
  * If the the relation does not contain the pair, return a new copy of the 
  * relation with the pair added. Otherwise, return the relation unmodified.
+ * 
+ * Defaults provided for arguments just to prevent wonky things happening from bad calls.
  */
-function addPair(relation, pair) {
-    if(relation.find(p => p.sequenceNumber = pair.sequenceNumber)) {
-        return relation;
+function addPair(state = defaultState, pair = [0, 1]) {
+    if(state.find(p => p[0] = pair[0])) {
+        return state;
     }
     else {
-        var newRelation = deepCopy(relation);
-        newRelation.push(pair);
-        return newRelation;
+        let newState = [
+          ...state,
+          pair
+          ];
+        return newState;
     }
 }
 
-const defaultState = {
-  relation: [
-    {
-      sequenceNumber: 0,
-      fibNumber: 1
-    }
-    ]
-};
 
 // TODO refactor the state to just be an array. No need to have an object
 // with just one property - an array. This is a short-lived and small project.
@@ -55,9 +42,8 @@ const defaultState = {
 function update(state = defaultState, action) {
   switch (action.type) {
       
-    case ADD_FIB: {
-      var newRelation = addPair(state.relation, action.pair);
-      state.relation = newRelation;
+    case 'ADD PAIR': {
+      state = addPair(state, action.pair);
       return state;
     }
       
