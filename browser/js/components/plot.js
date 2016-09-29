@@ -10,15 +10,15 @@ const Plot = (props) => {
       <h4>History</h4>
       {
         props.coordinates
-          .sort( (c1, c2) => c1.x - c2.x )
-          .map(coordinate => <Coordinate x={coordinate.x} y={coordinate.y} key={coordinate.x} />)
+          .sort( (c1, c2) => c1[0] - c2[0] )
+          .map(coordinate => <Coordinate x={coordinate[0]} y={coordinate[1]} key={coordinate[0]} />)
       }
     </div>
   );
 };
 
 Plot.propTypes = {
-  coordinates: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+  coordinates: React.PropTypes.arrayOf(React.PropTypes.arrayOf(React.PropTypes.number)).isRequired
 };
 
 module.exports = Plot;

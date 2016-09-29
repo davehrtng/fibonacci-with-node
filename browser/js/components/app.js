@@ -1,6 +1,7 @@
 const React = require('react'),
     Plot = require('./plot'),
-    request = require('request');
+    request = require('request'),
+    store = require('../redux-stuff');
 
 var App = React.createClass({
   getInitialState: function() {
@@ -10,7 +11,7 @@ var App = React.createClass({
       /** The current Fibonacci number */
       value: 0,
       /** The history of sequence and Fibonaccie numbers */
-      history: [{x: 1, y: 0}]
+      history: store.getState()
     };
   },
 
@@ -22,15 +23,20 @@ var App = React.createClass({
     e.preventDefault();
     request.get(this.props.url + this.state.sequence, function(error, response, body) { 
       if (!error && response.statusCode == 200) {
-            var data = JSON.parse(body);
-            var newHistory = this.state.history.concat({
-              x: data.sequenceNumber,
-              y: data.fibNumber
-            });
-            this.setState({
-                  value: data.fibNumber,
-                  history: newHistory
-            });
+            const data = JSON.parse(body);
+            // var newHistory = this.state.history.concat({
+            //   x: data.sequenceNumber,
+            //   y: data.fibNumber
+            // });
+            // this.setState({
+            //       value: data.fibNumber,
+            //       history: newHistory
+            // });
+            const addPairAction = {
+              type: 'ADD PAIR',
+              pair: [data.sequenceNumber, data.fibNumber]
+            }
+            store.dispatch(addPairAction);
       }
       else {
         alert("Something went wrong on our end. Sorry about that! Please try again later.");
@@ -50,7 +56,7 @@ var App = React.createClass({
           <input type="submit" className="btn btn-primary" value="Ok" />
         </form>
         <h1>{this.state.value}</h1>
-        <Plot coordinates={this.state.history} />
+        <Plot coordinates={store.getState()} />
       </div>
     );
   },
